@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../assets/mainPage.css'
 import { Grid, Table,Form, Input, TextArea, Button, Select } from 'semantic-ui-react'
+import navbar from './navbar';
 
 const LoadingPage = () => {
     const [loading, setLoading] = useState(false);
@@ -9,7 +10,7 @@ const LoadingPage = () => {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-        }, 500);
+        }, 5000);
     }, []);
 
     const genderOptions = [
@@ -19,13 +20,17 @@ const LoadingPage = () => {
     ]
 
     return (
-        <div className="container">
+        // style={{height:"100vh",backgroundImage:'url("https://www.hotshot-sports.com/wp-content/uploads/multisports_650017870.jpg',backgroundRepeat:"no-repeat, repeat"}}
+        <div className="container" >
             {loading ? (
                 <div className="loader-container">
                     <div className="spinner"/>
+                    <h1 className={"header-shop"}>Sports  360</h1>
+                    <img className={"load-image"} src={"https://www.freepnglogos.com/uploads/sport-png/sport-steadman-philippon-institute-official-site-16.png"} alt={"s"}/>
                 </div>
             ) : (
-                <div className="main-content">
+                <div className="main-content" style={{opacity:"0.8"}}>
+                    <navbar />
                     <Grid >
                         <Grid.Column width={7} style={{ margin: "50px 0 0 10px" }}>
                             <Form>
@@ -56,16 +61,6 @@ const LoadingPage = () => {
                                     control={TextArea}
                                     label='Opinion'
                                     placeholder='Opinion'
-                                />
-                                <Form.Field
-                                    id='form-input-control-error-email'
-                                    control={Input}
-                                    label='Email'
-                                    placeholder='joe@schmoe.com'
-                                    error={{
-                                        content: 'Please enter a valid email address',
-                                        pointing: 'below',
-                                    }}
                                 />
                                 <Form.Field
                                     id='form-button-control-public'
@@ -124,6 +119,6 @@ const LoadingPage = () => {
             )}
         </div>
     );
-};
+}
 
 export default LoadingPage;
