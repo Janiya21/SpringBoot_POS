@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    background: rgba(0, 0, 0, 0.95);
+    background: transparent;
     z-index: 1;
 }
 
@@ -14,9 +14,9 @@
 }
 
 .header-shop{
-    color: #52b5cf;
-    font-size: 100px;
-    margin-bottom: 60px;
+    color: #404343;
+    font-size: 50px;
+    margin-top: -8px;
     margin-left: 60px;
 }
 
@@ -24,7 +24,7 @@
     width: 84px;
     height: 84px;
     border: 8px solid;
-    border-color: #3d5af1 transparent #3d5af1 transparent;
+    border-color: #787980 transparent #6b7398 transparent;
     border-radius: 50%;
     animation: spin-anim 1.2s linear infinite;
 }
