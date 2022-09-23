@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../assets/mainPage.css'
 import {Grid, Table, Form, Input, Statistic, Button, Select, Icon, Image, Segment} from 'semantic-ui-react'
-import navbar from './navbar';
+import Navbar from './navbar';
 
 const LoadingPage = () => {
     const [loading, setLoading] = useState(false);
@@ -30,6 +30,7 @@ const LoadingPage = () => {
                 </div>
             ) : (
                 <div className="main-content" style={{opacity:"0.9"}}>
+                    <Navbar />
                     <Grid >
                         <Grid.Column width={7} style={{ margin: "70px 0 0 10px" }}>
                             <Segment inverted>

@@ -5,13 +5,14 @@ import Navbar from "./pages/navbar";
 import Layout from "./pages/Layout";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import ItemPage from "./pages/ItemPage";
+import OrderPage from "./pages/OrderPage";
 
 function App() {
   return (
       <BrowserRouter>
         <Routes>
             <Route path="/" element={<Layout />}>
-                <Route index element={<ItemPage />} />
+                <Route index element={<OrderPage />} />
             </Route>
         </Routes>
       </BrowserRouter>
