@@ -15,6 +15,7 @@ import {
     Divider, Header
 } from 'semantic-ui-react'
 import Navbar from "./navbar";
+import {InputGroup} from "react-bootstrap";
 
 const OrderPage = () => {
     const [loading, setLoading] = useState(false);
@@ -79,7 +80,7 @@ const OrderPage = () => {
                 <div className="main-content" style={{opacity:"0.9"}}>
                     <Navbar />
 
-                    <Grid >
+                    <Grid style={{marginLeft:"1vw"}}>
                         <Grid.Column width={5} style={{ margin: "40px 0 0 10px" }}>
                             <Form>
                                 <Form.Group>
@@ -99,7 +100,6 @@ const OrderPage = () => {
                                     <Table.Row>
                                         <Table.HeaderCell>Name</Table.HeaderCell>
                                         <Table.HeaderCell>Status</Table.HeaderCell>
-                                        <Table.HeaderCell>Notes</Table.HeaderCell>
                                     </Table.Row>
                                 </Table.Header>
 
@@ -107,32 +107,26 @@ const OrderPage = () => {
                                     <Table.Row>
                                         <Table.Cell>John</Table.Cell>
                                         <Table.Cell>No Action</Table.Cell>
-                                        <Table.Cell>None</Table.Cell>
                                     </Table.Row>
                                     <Table.Row>
                                         <Table.Cell>Jamie</Table.Cell>
                                         <Table.Cell>Approved</Table.Cell>
-                                        <Table.Cell>Requires call</Table.Cell>
                                     </Table.Row>
                                     <Table.Row>
                                         <Table.Cell>Jill</Table.Cell>
                                         <Table.Cell>Denied</Table.Cell>
-                                        <Table.Cell>None</Table.Cell>
                                     </Table.Row>
                                     <Table.Row warning>
                                         <Table.Cell>John</Table.Cell>
                                         <Table.Cell>No Action</Table.Cell>
-                                        <Table.Cell>None</Table.Cell>
                                     </Table.Row>
                                     <Table.Row>
                                         <Table.Cell>Jamie</Table.Cell>
                                         <Table.Cell positive>Approved</Table.Cell>
-                                        <Table.Cell warning>Requires call</Table.Cell>
                                     </Table.Row>
                                     <Table.Row>
                                         <Table.Cell>Jill</Table.Cell>
                                         <Table.Cell negative>Denied</Table.Cell>
-                                        <Table.Cell>None</Table.Cell>
                                     </Table.Row>
                                 </Table.Body>
                             </Table>
@@ -168,18 +162,18 @@ const OrderPage = () => {
                                                 placeholder='order quantity'
                                     />
                                     <Form.Field style={{width:"15vw"}}
-                                                id='form-input-control-unitPrice'
-                                                control={Input}
-                                                placeholder='total'
-                                    />
-                                </Form.Group>
-                                <Form.Group>
-                                    <Form.Field style={{width:"20vw"}}
                                                 id='form-input-control-discount'
                                                 control={Input}
                                                 placeholder='discount'
                                     />
-                                    <Form.Field style={{marginLeft:"20px"}}
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Field style={{width:"20vw"}}
+                                                id='form-input-control-unitPrice'
+                                                control={Input}
+                                                placeholder='total'
+                                    />
+                                    <Form.Field style={{marginLeft:"1 0px"}}
                                         id='form-button-control-public'
                                         control={Button}
                                         content='Add To Cart'
@@ -189,13 +183,15 @@ const OrderPage = () => {
 
                         </Grid.Column>
 
-                        <Grid.Column width={8} style={{margin:"30px 0 0 20px"}}>
+                        <Grid.Column width={10} style={{margin:"30px 0 0 20px"}}>
                             <Header as='h2' image='https://www.pngitem.com/pimgs/m/522-5226692_my-shopping-cart-icon-for-my-cart-hd.png' content='Cart Items' />
                             <Table celled selectable>
                                 <Table.Header>
                                     <Table.Row>
                                         <Table.HeaderCell>Name</Table.HeaderCell>
                                         <Table.HeaderCell>Status</Table.HeaderCell>
+                                        <Table.HeaderCell>Notes</Table.HeaderCell>
+                                        <Table.HeaderCell>Notes</Table.HeaderCell>
                                         <Table.HeaderCell>Notes</Table.HeaderCell>
                                     </Table.Row>
                                 </Table.Header>
@@ -205,34 +201,61 @@ const OrderPage = () => {
                                         <Table.Cell>John</Table.Cell>
                                         <Table.Cell>No Action</Table.Cell>
                                         <Table.Cell>None</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
                                     </Table.Row>
                                     <Table.Row>
                                         <Table.Cell>Jamie</Table.Cell>
                                         <Table.Cell>Approved</Table.Cell>
                                         <Table.Cell>Requires call</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
                                     </Table.Row>
                                     <Table.Row>
                                         <Table.Cell>Jill</Table.Cell>
                                         <Table.Cell>Denied</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
                                         <Table.Cell>None</Table.Cell>
                                     </Table.Row>
                                     <Table.Row warning>
                                         <Table.Cell>John</Table.Cell>
                                         <Table.Cell>No Action</Table.Cell>
                                         <Table.Cell>None</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
                                     </Table.Row>
                                     <Table.Row>
                                         <Table.Cell>Jamie</Table.Cell>
                                         <Table.Cell positive>Approved</Table.Cell>
                                         <Table.Cell warning>Requires call</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
                                     </Table.Row>
                                     <Table.Row>
                                         <Table.Cell>Jill</Table.Cell>
                                         <Table.Cell negative>Denied</Table.Cell>
                                         <Table.Cell>None</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
+                                    </Table.Row>
+                                    <Table.Row>
+                                        <Table.Cell>Jill</Table.Cell>
+                                        <Table.Cell negative>Denied</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
+                                        <Table.Cell>None</Table.Cell>
                                     </Table.Row>
                                 </Table.Body>
                             </Table>
+                            <Input disabled placeholder='Absolute Total' style={{margin:"10px 0 0 49vw"}}/> <br />
+                            <Input disabled placeholder='Discount' style={{margin:"10px 0 0 49vw"}}/> <br />
+                            <Input disabled placeholder='Total Amount' style={{margin:"10px 0 0 49vw"}}/> <br />
+                            <Form.Field style={{margin:"10px 0 0 49vw", width:"11.5vw"}}
+                                        id='form-button-control-public'
+                                        control={Button}
+                                        content='Checkout Order'
+                            />
                         </Grid.Column>
                     </Grid>
                 </div>
