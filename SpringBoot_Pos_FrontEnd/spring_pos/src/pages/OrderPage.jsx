@@ -1,32 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import '../assets/OrderPage.css'
-import {
-    Grid,
-    Table,
-    Form,
-    Input,
-    Statistic,
-    Button,
-    Select,
-    Icon,
-    Image,
-    Segment,
-    Dropdown,
-    Divider, Header
-} from 'semantic-ui-react'
-import Navbar from "./navbar";
-import {InputGroup} from "react-bootstrap";
+import Navbar from './navbar';
+import {Grid, Table, Form, Input, Button, Dropdown, Divider, Header} from 'semantic-ui-react';
 
 const OrderPage = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true);
+        loadHistory();
         setTimeout(() => {
             setLoading(false);
         }, 1000);
     }, []);
 
+    function loadHistory(){
+        let customer = localStorage.getItem("customerData");
+        console.log(customer);
+        return customer;
+    }
 
     const friendOptions = [
         {

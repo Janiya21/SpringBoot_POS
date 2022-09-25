@@ -3,18 +3,13 @@ import '../assets/mainPage.css'
 import {Grid, Table, Form, Input, Statistic, Button, Select, Icon, Image, Segment} from 'semantic-ui-react'
 import Navbar from './navbar';
 import axios from "axios";
-import data from "bootstrap/js/src/dom/data";
+import {Link} from "react-router-dom";
+import history from '../history';
 
 const LoadingPage = () => {
     const [loading, setLoading] = useState(false);
     const [customerData, setCustomers] = useState([]);
     const [submitData, setSubmitData] = useState({});
-
-    const genderOptions = [
-        { key: 'm', text: 'Male', value: 'male' },
-        { key: 'f', text: 'Female', value: 'female' },
-        { key: 'o', text: 'Other', value: 'other' },
-    ]
 
     useEffect(() => {
         setLoading(true);
@@ -29,21 +24,20 @@ const LoadingPage = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
 
-        let res = await postCustomer(this.state);
+        let cusData = {
+            "id": "C-006",
+            "name": "Jhonny",
+            "address": "Maharagama",
+            "telNo": "0717689433"
+        }
+
+        let res = await postCustomer(cusData);
         console.log(res);
 
         if (res.status === 201) {
-            this.setState({
-                alert: true,
-                message: res.data.message,
-                severity: 'success'
-            });
+            alert("Done")
         } else {
-            this.setState({
-                alert: true,
-                message: res.response.data.message,
-                severity: 'error'
-            });
+            alert("Error");
         }
     }
     /*=====================================================*/
@@ -62,18 +56,23 @@ const LoadingPage = () => {
     }
 
     const postCustomer = async (data) => {
+            const promise = new Promise((resolve, reject) => {
+                axios.post('http://localhost:8081/app/api/v1/customer', data)
+                    .then((res) => {
+                        return resolve(res)
+                    })
+                    .catch((err) => {
+                        return resolve(err)
+                    })
+            });
+            return await promise;
+    }
 
-        const promise = new Promise((resolve, reject) => {
-            axios.post('http://localhost:8081/easyRents/api/v1/customer', data)
-                .then((res) => {
-                    return resolve(res)
-                })
-                .catch((err) => {
-                    return resolve(err)
-                })
-        });
+    const navigateToOrder = (data) => {
+        localStorage.setItem('customerData', data)
+        history.push({pathname:'/order'});
 
-        return await promise;
+        console.log(data);
     }
 
     /*=====================================================*/
@@ -90,7 +89,7 @@ const LoadingPage = () => {
                 <div className="main-content" style={{opacity:"0.9"}}>
                     <Navbar />
                     <Grid >
-                        <Grid.Column width={7} style={{ margin: "70px 0 0 10px" }}>
+                        <Grid.Column width={6} style={{ margin: "70px 0 0 10px" }}>
                             <Segment inverted>
                                 <Statistic.Group inverted>
                                     <Statistic>
@@ -112,41 +111,35 @@ const LoadingPage = () => {
                                 </Statistic.Group>
                             </Segment>
                             <Form style={{marginTop:"30px"}}>
+                                <Form.Field
+                                    id='form-input-control-name'
+                                    control={Input}
+                                    label='Name'
+                                    placeholder='name'
+                                />
                                 <Form.Group widths='equal'>
                                     <Form.Field
-                                        id='form-input-control-first-name'
+                                        id='form-input-control-email'
                                         control={Input}
-                                        label='First name'
-                                        placeholder='First name'
+                                        label='Email'
+                                        placeholder='Email Address'
                                     />
                                     <Form.Field
-                                        id='form-input-control-last-name'
+                                        id='form-input-control-telNo'
                                         control={Input}
-                                        label='Last name'
-                                        placeholder='Last name'
-                                    />
-                                    <Form.Field
-                                        control={Select}
-                                        options={genderOptions}
-                                        label={{ children: 'Gender', htmlFor: 'form-select-control-gender' }}
-                                        placeholder='Gender'
-                                        search
-                                        searchInput={{ id: 'form-select-control-gender' }}
+                                        label='TelNo'
+                                        placeholder='Telephone No'
                                     />
 
                                 </Form.Group>
-                                <Form.Field>
-                                    <label>First Name</label>
-                                    <input placeholder='First Name' />
-                                </Form.Field>
-                                <Form.Group style={{margin:"40px"}}>
-                                    <Button >Save Customer</Button>
+                                <Form.Group style={{margin:"20px"}}>
+                                    <Button onClick={submitHandler}>Save Customer</Button>
                                     <Button >Update Customer Customer</Button>
                                     <Button >Delete Customer</Button>
                                 </Form.Group>
                             </Form>
                         </Grid.Column>
-                        <Grid.Column width={8} style={{margin:"50px 0 0 20px"}}>
+                        <Grid.Column width={9} style={{margin:"50px 0 0 20px"}}>
                             <Input icon='search' placeholder='Search...' style={{width:"49vw", margin:"20px 0 20px 0"}}/>
                             <Table celled selectable>
                                 <Table.Header>
@@ -154,8 +147,8 @@ const LoadingPage = () => {
                                         <Table.HeaderCell>ID</Table.HeaderCell>
                                         <Table.HeaderCell>Name</Table.HeaderCell>
                                         <Table.HeaderCell>Address</Table.HeaderCell>
-                                        <Table.HeaderCell style={{width:"30px"}}>TelNo</Table.HeaderCell>
-                                        <Table.HeaderCell>Go</Table.HeaderCell>
+                                        <Table.HeaderCell style={{width:"40px"}}>TelNo</Table.HeaderCell>
+                                        <Table.HeaderCell style={{width:"30px"}}>Continue</Table.HeaderCell>
                                     </Table.Row>
                                 </Table.Header>
 
@@ -168,7 +161,11 @@ const LoadingPage = () => {
                                                 <Table.Cell>{data.address}</Table.Cell>
                                                 <Table.Cell>{data.telNo}</Table.Cell>
                                                 <Table.Cell>
-                                                    <Button>Continue</Button>
+                                                    <Button onClick={() => navigateToOrder(data)}>
+                                                        <Link to={{pathname:'/order', query:{test:'test'}}} >
+                                                            Continue
+                                                        </Link>
+                                                    </Button>
                                                 </Table.Cell>
                                             </Table.Row>
                                         )
